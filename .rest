@@ -1,0 +1,23 @@
+POST http://localhost:3333/register
+Content-Type: application/json
+
+{
+  "nome": "Rodrigo",
+  "password": "123123",
+  "data_nasc":"2005/04/19",
+  "email": "rodri.midas@gmail.com",
+  "telefone": "962093892",
+  "morada": "Rua Saraiva de Carvalho n386C"
+}
+
+###
+GET http://localhost:3333/restaurantes
+
+###
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+  "email":"rodri.midas@gmail.com",
+  "password":"123123"
+}
