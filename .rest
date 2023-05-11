@@ -21,3 +21,6 @@ Content-Type: application/json
   "email":"rodri.midas@gmail.com",
   "password":"123123"
 }
+
+###
+GET http://localhost:3333/user/3

@@ -11,7 +11,10 @@ const login = async (user) => {
     .query("SELECT * FROM tbl_clientes Where email =  @email");
   const data = email.recordset[0];
 
-  if (data == undefined || data == null) return "Email não existe.";
+  if (data == undefined || data == null) {
+    let resp = { message: "Email não existe." };
+    return resp;
+  }
   if (await bcrypt.compare(user.password, data.password)) {
     let id = data.id_cliente;
 
@@ -19,7 +22,8 @@ const login = async (user) => {
 
     return resp;
   } else {
-    return "Senha Errada";
+    let resp = { message: "Senha Errada." };
+    return resp;
   }
 };
 
@@ -41,7 +45,19 @@ const register = async (user) => {
   return "Resgistado com Sucesso!";
 };
 
+const getUser = async (user) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("id_cliente", sql.Int, user)
+    .query("SELECT * FROM tbl_clientes WHERE id_cliente = @id_cliente");
+
+  const data = result.recordset[0];
+  return data;
+};
+
 module.exports = {
   login,
   register,
+  getUser,
 };

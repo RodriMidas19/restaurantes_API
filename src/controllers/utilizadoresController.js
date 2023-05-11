@@ -20,4 +20,9 @@ const register = async (request, response) => {
   return response.status(201).json(resp);
 };
 
-module.exports = { login, register };
+const getUser = async (request, response) => {
+  let resp = await utilizadoresModel.getUser(request.params.id);
+  return response.status(200).json(resp);
+};
+
+module.exports = { login, register, getUser };
