@@ -2,6 +2,16 @@ const connection = require("../connection");
 const sql = require("mssql");
 const bcrypt = require("bcrypt");
 
+const verify = async (password, bdPassword, id, user) => {
+  if (await bcrypt.compare(password, bdPassword)) {
+    let resp = { id: id, message: "Login realizado com sucesso", user: user };
+
+    return resp;
+  } else {
+    let resp = { message: "Senha Errada." };
+    return resp;
+  }
+};
 const login = async (user) => {
   const pool = await connection;
 
@@ -10,19 +20,35 @@ const login = async (user) => {
     .input("email", sql.VarChar(100), user.email)
     .query("SELECT * FROM tbl_clientes Where email =  @email");
   const data = email.recordset[0];
+  console.log(data);
+
+  const func = await pool
+    .request()
+    .input("email", sql.VarChar(100), user.email)
+    .query("SELECT * FROM tbl_funcionarios WHERE email = @email");
+  const funcData = func.recordset[0];
+  console.log(funcData);
 
   if (data == undefined || data == null) {
-    let resp = { message: "Email não existe." };
-    return resp;
-  }
-  if (await bcrypt.compare(user.password, data.password)) {
-    let id = data.id_cliente;
-
-    let resp = { code: 202, id: id, message: "Login realizado com sucesso" };
-
-    return resp;
+    if (funcData == undefined || funcData == null) {
+      let resp = { message: "Email não existe." };
+      return resp;
+    } else {
+      const resp = verify(
+        user.password,
+        funcData.password,
+        funcData.num_funcionario,
+        "funcionário"
+      );
+      return resp;
+    }
   } else {
-    let resp = { message: "Senha Errada." };
+    const resp = verify(
+      user.password,
+      data.password,
+      data.id_cliente,
+      "cliente"
+    );
     return resp;
   }
 };
