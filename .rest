@@ -1,13 +1,14 @@
-POST http://localhost:3333/register
+POST http://localhost:3333/registerFunc
 Content-Type: application/json
 
 {
-  "nome": "Rodrigo",
-  "password": "123123",
-  "data_nasc":"2005/04/19",
-  "email": "rodri.midas@gmail.com",
+  "num_funcionario": "ADM",
+  "nome_funcionario": "Rodrigo",
+  "idade": 18,
   "telefone": "962093892",
-  "morada": "Rua Saraiva de Carvalho n386C"
+  "email": "admin@gmail.com",
+  "password": "123",
+  "cargo":1
 }
 
 ###

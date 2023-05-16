@@ -71,6 +71,25 @@ const register = async (user) => {
   return "Resgistado com Sucesso!";
 };
 
+const registerFunc = async (user) => {
+  const pool = await connection;
+  const password = await bcrypt.hash(user.password, 10);
+  const result = await pool
+    .request()
+    .input("num_funcionario", sql.VarChar(10), user.num_funcionario)
+    .input("nome_funcionario", sql.VarChar(100), user.nome_funcionario)
+    .input("idade", sql.Int, user.idade)
+    .input("telefone", sql.VarChar(9), user.telefone)
+    .input("email", sql.VarChar(100), user.email)
+    .input("password", sql.VarChar(250), password)
+    .input("cargo", sql.Int, user.cargo)
+    .query(
+      "INSERT INTO tbl_funcionarios (num_funcionario,nome_funcionario,idade,telefone,email,password,cargo) VALUES (@num_funcionario,@nome_funcionario,@idade,@telefone,@email,@password,@cargo)"
+    );
+
+  return "Resgistado com Sucesso!";
+};
+
 const getUser = async (user) => {
   const pool = await connection;
   const result = await pool
@@ -86,4 +105,5 @@ module.exports = {
   login,
   register,
   getUser,
+  registerFunc,
 };
