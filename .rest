@@ -24,4 +24,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/user/3
+GET http://localhost:3333/clientes

@@ -1,5 +1,10 @@
 const utilizadoresModel = require("../models/utilizadoresModel");
 
+const getAllClients = async (request, response) => {
+  let resp = await utilizadoresModel.getAllClients();
+  return response.status(201).json(resp);
+};
+
 const login = async (request, response) => {
   let user = { email: request.body.email, password: request.body.password };
   let resp = await utilizadoresModel.login(user);
@@ -39,4 +44,4 @@ const getUser = async (request, response) => {
   return response.status(200).json(resp);
 };
 
-module.exports = { login, register, getUser, registerFunc };
+module.exports = { login, register, getUser, registerFunc, getAllClients };

@@ -101,9 +101,16 @@ const getUser = async (user) => {
   return data;
 };
 
+const getAllClients = async () => {
+  const pool = await connection;
+  const result = await pool.request().query("SELECT * FROM tbl_clientes");
+  return result;
+};
+
 module.exports = {
   login,
   register,
   getUser,
   registerFunc,
+  getAllClients,
 };

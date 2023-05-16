@@ -7,6 +7,7 @@ const restaurantesController = require("./controllers/restaurantesController");
 const router = express.Router();
 
 //Utilizadores and Funcionarios
+router.get("/clientes", utilizadoresController.getAllClients);
 router.post("/login", utilizadoresController.login);
 router.post("/registerFunc", utilizadoresController.registerFunc);
 router.post("/register", utilizadoresController.register);
