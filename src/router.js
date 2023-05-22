@@ -7,11 +7,15 @@ const restaurantesController = require("./controllers/restaurantesController");
 const router = express.Router();
 
 //Utilizadores and Funcionarios
+
+//GET
 router.get("/clientes", utilizadoresController.getAllClients);
+router.get("/user/:id", utilizadoresController.getUser);
+router.get("/funcionarios", utilizadoresController.getAllFuncionarios);
+
 router.post("/login", utilizadoresController.login);
 router.post("/registerFunc", utilizadoresController.registerFunc);
 router.post("/register", utilizadoresController.register);
-router.get("/user/:id", utilizadoresController.getUser);
 
 //Restaurantes
 router.get("/restaurantes", restaurantesController.getRestaurantes);

@@ -107,10 +107,17 @@ const getAllClients = async () => {
   return result;
 };
 
+const getAllFunc = async () => {
+  const pool = await connection;
+  const result = await pool.request().query("SELECT * from tbl_funcionarios");
+  return result;
+};
+
 module.exports = {
   login,
   register,
   getUser,
   registerFunc,
   getAllClients,
+  getAllFunc,
 };

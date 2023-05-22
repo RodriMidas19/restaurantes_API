@@ -5,6 +5,11 @@ const getAllClients = async (request, response) => {
   return response.status(201).json(resp);
 };
 
+const getAllFuncionarios = async (request, response) => {
+  let resp = await utilizadoresModel.getAllFunc();
+  return response.status(201).json(resp);
+};
+
 const login = async (request, response) => {
   let user = { email: request.body.email, password: request.body.password };
   let resp = await utilizadoresModel.login(user);
@@ -44,4 +49,11 @@ const getUser = async (request, response) => {
   return response.status(200).json(resp);
 };
 
-module.exports = { login, register, getUser, registerFunc, getAllClients };
+module.exports = {
+  login,
+  register,
+  getUser,
+  registerFunc,
+  getAllClients,
+  getAllFuncionarios,
+};
