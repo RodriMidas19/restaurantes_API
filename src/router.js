@@ -18,5 +18,7 @@ router.post("/registerFunc", utilizadoresController.registerFunc);
 router.post("/register", utilizadoresController.register);
 
 //Restaurantes
+router.get("/reservas", restaurantesController.getReservas);
+router.post("/reservaCliente", restaurantesController.clienteReserva);
 router.get("/restaurantes", restaurantesController.getRestaurantes);
 module.exports = router;

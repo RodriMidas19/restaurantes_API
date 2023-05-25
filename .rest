@@ -24,4 +24,17 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/funcionarios
+GET http://localhost:3333/reservas
+
+###
+POST http://localhost:3333/reservaCliente
+Content-Type: application/json
+
+{
+  "num_restaurante":1,
+  "num_pessoas":5,
+  "data_reserva":"24/05/2023",
+  "situacao":0,
+  "hora_reserva":"19:00",
+  "id_cliente":3
+}
