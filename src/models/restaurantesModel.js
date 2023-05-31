@@ -18,14 +18,17 @@ const getReservas = async () => {
   return data;
 };
 
-const getMesas = async (data)=>{
+const getMesas = async (data) => {
   const pool = await poolPromise;
-  const result = await pool.request()
-    .input("hora",varChar(250),data.hora)
-    .input("data",varChar(250),data.data)
-    .input("restaurante",Int,data.restaurante)
-    .query("exec getMesasDisponiveis");
-}
+  const result = await pool
+    .request()
+    .input("hora", varChar(250), data.hora)
+    .input("data", varChar(250), data.data)
+    .input("restaurante", Int, data.restaurante)
+    .query("exec getMesasDisponiveis @hora @data @restaurante");
+
+    return result;
+};
 
 const reservaCliente = async (data) => {
   const pool = await poolPromise;
