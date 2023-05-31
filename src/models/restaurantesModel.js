@@ -14,7 +14,7 @@ const getReservas = async () => {
     .query(
       "select num_reserva,tbl_restaurantes.nome,num_pessoas,data_reserva,situacao,hora_reserva,tbl_clientes.nome as nomeCliente from tbl_reservas inner join tbl_restaurantes on tbl_restaurantes.num_restaurante = tbl_reservas.num_restaurante inner join tbl_clientes on tbl_clientes.id_cliente = tbl_reservas.id_cliente"
     );
-  const data = result.recordsets;
+  const data = result;
   return data;
 };
 
