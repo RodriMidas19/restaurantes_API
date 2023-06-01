@@ -5,6 +5,11 @@ const getRestaurantes = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const getMesas = async (request, response) => {
+  let resp = await restauranteModel.getMesas();
+  return response.status(200).json(resp);
+};
+
 const getReservas = async (request, response) => {
   let resp = await restauranteModel.getReservas();
   return response.status(200).json(resp);
@@ -23,4 +28,4 @@ const clienteReserva = async (request, response) => {
   return response.status(201).json(resp);
 };
 
-module.exports = { getRestaurantes, clienteReserva, getReservas };
+module.exports = { getRestaurantes, clienteReserva, getReservas, getMesas };

@@ -27,7 +27,7 @@ const getMesas = async (data) => {
     .input("restaurante", Int, data.restaurante)
     .query("exec getMesasDisponiveis @hora @data @restaurante");
 
-    return result;
+  return result;
 };
 
 const reservaCliente = async (data) => {
@@ -48,4 +48,4 @@ const reservaCliente = async (data) => {
   return resp;
 };
 
-module.exports = { getRestaurantes, reservaCliente, getReservas };
+module.exports = { getRestaurantes, reservaCliente, getReservas, getMesas };

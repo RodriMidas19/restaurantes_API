@@ -20,5 +20,6 @@ router.post("/register", utilizadoresController.register);
 //Restaurantes
 router.get("/reservas", restaurantesController.getReservas);
 router.post("/reservaCliente", restaurantesController.clienteReserva);
+router.get("mesas", restaurantesController.getMesas);
 router.get("/restaurantes", restaurantesController.getRestaurantes);
 module.exports = router;
