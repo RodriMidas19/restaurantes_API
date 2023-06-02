@@ -24,7 +24,14 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/reservas
+GET http://localhost:3333/mesas
+Content-Type: application/json
+
+{
+  "hora":"19:00h",
+  "data":"2023061",
+  "restaurante":1
+}
 
 ###
 POST http://localhost:3333/reservaCliente
@@ -38,3 +45,6 @@ Content-Type: application/json
   "hora_reserva":"19:00",
   "id_cliente":3
 }
+
+###
+POST http://localhost:3333/reservas/5/2
