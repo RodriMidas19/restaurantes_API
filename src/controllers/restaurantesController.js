@@ -33,14 +33,13 @@ const clienteReserva = async (request, response) => {
   return response.status(201).json(resp);
 };
 const adminReserva = async (request, response) => {
-  
+  let mesas = request.body.num_mesa;
   let data = {
-    num_mesa: request.body.num_mesa,
     id_reserva: request.body.id_reserva,
     data_reserva: request.body.data_reserva,
     hora_reserva: request.body.hora_reserva,
   };
-  let resp = await restauranteModel.reservaAdmin(data);
+  let resp = await restauranteModel.reservaAdmin(data, mesas);
   return response.status(201).json(resp);
 };
 

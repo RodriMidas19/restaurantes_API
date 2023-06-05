@@ -21,7 +21,7 @@ router.post("/register", utilizadoresController.register);
 router.get("/reservas", restaurantesController.getReservas);
 router.post("/reservaCliente", restaurantesController.clienteReserva);
 router.post("/reservasAdm", restaurantesController.adminReserva);
-router.post(
+router.put(
   "/reservas/:id_reserva/:status",
   restaurantesController.updateStatusReserva
 );

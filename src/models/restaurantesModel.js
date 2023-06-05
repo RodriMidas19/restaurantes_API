@@ -50,9 +50,19 @@ const reservaCliente = async (data) => {
   return resp;
 };
 
-const reservaAdmin = async (data) => {
-  console.log(data.num_mesas);
-  
+const reservaAdmin = async (data, mesas) => {
+  const pool = await poolPromise;
+  for (let i = 0; i < mesas.length; i++) {
+    const result = await pool
+      .request()
+      .input("num_mesaC", sql.VarChar(10), mesas[i].name)
+      .input("id_reservaC", sql.Int, data.id_reserva)
+      .input("data_reservaC", sql.VarChar(50), data.data_reserva)
+      .input("hora_reservaC", sql.VarChar(50), data.hora_reserva)
+      .query(
+        "exec insertRMAdmin @num_mesa = @num_mesaC,@id_reserva = @id_reservaC,@data_reserva = @data_reservaC,@hora_reserva = @hora_reservaC"
+      );
+  }
 
   const resp = { message: "Mesas reservadas com sucesso" };
   return resp;
@@ -60,7 +70,6 @@ const reservaAdmin = async (data) => {
 
 const updateStatusReserva = async (id, status) => {
   const pool = await poolPromise;
-  console.log(status);
   const result = await pool
     .request()
     .input("num_reserva", sql.Int, id)
