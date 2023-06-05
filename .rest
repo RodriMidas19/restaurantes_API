@@ -47,4 +47,10 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3333/reservas/4/3
+PUT http://localhost:3333/Upreservas
+Content-Type: application/json
+
+{
+  "id":8,
+  "status":1
+}
