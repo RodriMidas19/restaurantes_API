@@ -44,10 +44,16 @@ const adminReserva = async (request, response) => {
 };
 
 const updateStatusReserva = async (request, response) => {
-  let id = request.params.id_reserva;
-  let status = request.params.status;
+  let id = request.body.id;
+  let status = request.body.status;
   let resp = await restauranteModel.updateStatusReserva(id, status);
   return response.status(200).json(resp);
+};
+
+const deleteReserva = async (request, response) => {
+  let id = request.params.id;
+  let resp = await restauranteModel.deleteReserva(id);
+  return response.status(202).json(resp);
 };
 
 module.exports = {
@@ -57,4 +63,5 @@ module.exports = {
   getMesas,
   adminReserva,
   updateStatusReserva,
+  deleteReserva,
 };

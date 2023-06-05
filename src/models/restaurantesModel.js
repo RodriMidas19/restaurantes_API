@@ -81,6 +81,17 @@ const updateStatusReserva = async (id, status) => {
   return resp;
 };
 
+const deleteReserva = async (id) => {
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("id", sql.Int, id)
+    .query("DELETE FROM tbl_mesasReservadas WHERE id_reserva = @id");
+
+  const resp = { message: "Reserva rejeitada com sucesso." };
+  return resp;
+};
+
 module.exports = {
   getRestaurantes,
   reservaCliente,
@@ -88,4 +99,5 @@ module.exports = {
   getMesas,
   reservaAdmin,
   updateStatusReserva,
+  deleteReserva
 };

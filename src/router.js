@@ -21,10 +21,8 @@ router.post("/register", utilizadoresController.register);
 router.get("/reservas", restaurantesController.getReservas);
 router.post("/reservaCliente", restaurantesController.clienteReserva);
 router.post("/reservasAdm", restaurantesController.adminReserva);
-router.put(
-  "/reservas/:id_reserva/:status",
-  restaurantesController.updateStatusReserva
-);
+router.put("/Upreservas", restaurantesController.updateStatusReserva);
+router.delete("/reservas/:id", restaurantesController.deleteReserva);
 router.post("/mesas", restaurantesController.getMesas);
 router.get("/restaurantes", restaurantesController.getRestaurantes);
 module.exports = router;
