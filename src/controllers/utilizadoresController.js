@@ -5,6 +5,11 @@ const getAllClients = async (request, response) => {
   return response.status(201).json(resp);
 };
 
+const deleteClient = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.deleteClient(id);
+  return response.status(202).json(resp);
+};
 const getAllFuncionarios = async (request, response) => {
   let resp = await utilizadoresModel.getAllFunc();
   return response.status(201).json(resp);
@@ -56,4 +61,5 @@ module.exports = {
   registerFunc,
   getAllClients,
   getAllFuncionarios,
+  deleteClient,
 };

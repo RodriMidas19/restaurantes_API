@@ -100,6 +100,15 @@ const getUser = async (user) => {
   const data = result.recordset[0];
   return data;
 };
+const deleteClient = async (id) => {
+  const pool = await connection;
+  await pool
+    .request()
+    .input("id", sql.Int, id)
+    .query("DELETE FROM tbl_clientes WHERE id_cliente = @id");
+  const resp = { message: `Cliente ${id} eliminado com sucesso` };
+  return resp;
+};
 
 const getAllClients = async () => {
   const pool = await connection;
@@ -109,7 +118,11 @@ const getAllClients = async () => {
 
 const getAllFunc = async () => {
   const pool = await connection;
-  const result = await pool.request().query("SELECT * from tbl_funcionarios");
+  const result = await pool
+    .request()
+    .query(
+      "SELECT num_funcionario,nome_funcionario,idade,telefone,email,nome_cargo as cargo from tbl_funcionarios inner join tbl_cargos on tbl_cargos.id_cargo = tbl_funcionarios.cargo"
+    );
   return result;
 };
 
@@ -120,4 +133,5 @@ module.exports = {
   registerFunc,
   getAllClients,
   getAllFunc,
+  deleteClient,
 };

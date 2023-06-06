@@ -12,6 +12,7 @@ const router = express.Router();
 router.get("/clientes", utilizadoresController.getAllClients);
 router.get("/user/:id", utilizadoresController.getUser);
 router.get("/funcionarios", utilizadoresController.getAllFuncionarios);
+router.delete("/deleteClient/:id", utilizadoresController.deleteClient);
 
 router.post("/login", utilizadoresController.login);
 router.post("/registerFunc", utilizadoresController.registerFunc);
