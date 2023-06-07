@@ -2,13 +2,13 @@ POST http://localhost:3333/registerFunc
 Content-Type: application/json
 
 {
-  "num_funcionario": "ADM",
-  "nome_funcionario": "Rodrigo",
-  "idade": 18,
+  "num_funcionario": "Chefe",
+  "nome_funcionario": "Bigodes",
+  "idade": 35,
   "telefone": "962093892",
-  "email": "admin@gmail.com",
+  "email": "chefe@gmail.com",
   "password": "123",
-  "cargo":1
+  "cargo":3  
 }
 
 ###
