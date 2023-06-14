@@ -5,6 +5,11 @@ const getRestaurantes = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const getCargos = async (request, response) => {
+  let resp = await restauranteModel.getCargos();
+  return response.status(200).json(resp);
+};
+
 const getMesas = async (request, response) => {
   let data = {
     hora: request.body.hora,
@@ -56,6 +61,17 @@ const deleteReserva = async (request, response) => {
   return response.status(202).json(resp);
 };
 
+const addProduct = async (request, response) => {
+  let data = {
+    nome: request.body.nome,
+    preco: request.body.preco,
+    disponivel: request.body.disponivel,
+    img: request.body.img,
+  };
+  let resp = await restauranteModel.addProduct(data);
+  return response.status(200).json(resp);
+};
+
 module.exports = {
   getRestaurantes,
   clienteReserva,
@@ -64,4 +80,6 @@ module.exports = {
   adminReserva,
   updateStatusReserva,
   deleteReserva,
+  getCargos,
+  addProduct,
 };

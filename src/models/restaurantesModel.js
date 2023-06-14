@@ -1,6 +1,12 @@
 const poolPromise = require("../connection");
 const sql = require("mssql");
 
+const getCargos = async () => {
+  const pool = await poolPromise;
+  const result = await pool.request().query("SELECT * FROM tbl_cargos");
+  return result;
+};
+
 const getRestaurantes = async () => {
   const pool = await poolPromise;
   const result = await pool.request().query("SELECT * FROM tbl_restaurantes");
@@ -92,6 +98,22 @@ const deleteReserva = async (id) => {
   return resp;
 };
 
+const addProduct = async (data) => {
+  console.log(data.img);
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("nome_produto", sql.VarChar(100), data.nome)
+    .input("preco", sql.Int, data.preco)
+    .input("disponivel", sql.Bit, data.disponivel)
+    .input("img", sql.VarChar(sql.MAX), data.img)
+    .query(
+      "INSERT INTO tbl_produtos(nome_produto,preco,disponivel,prod_imagem) VALUES(@nome_produto,@preco,@disponivel,@img)"
+    );
+
+  const resp = { message: "Produto adicionado com sucesso" };
+  return resp;
+};
 module.exports = {
   getRestaurantes,
   reservaCliente,
@@ -99,5 +121,7 @@ module.exports = {
   getMesas,
   reservaAdmin,
   updateStatusReserva,
-  deleteReserva
+  deleteReserva,
+  getCargos,
+  addProduct,
 };

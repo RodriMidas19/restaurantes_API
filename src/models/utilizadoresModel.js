@@ -126,6 +126,34 @@ const getAllFunc = async () => {
   return result;
 };
 
+const updateFunc = async (data) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("num", sql.VarChar(10), data.num)
+    .input("nome", sql.VarChar(100), data.nome)
+    .input("idade", sql.Int, data.idade)
+    .input("telefone", sql.VarChar(9), data.telefone)
+    .input("email", sql.VarChar(100), data.email)
+    .input("cargo", sql.Int, data.cargo)
+    .query(
+      "UPDATE tbl_funcionarios SET nome_funcionario = @nome , idade = @idade , telefone = @telefone , email = @email , cargo = @cargo WHERE num_funcionario = @num"
+    );
+
+  const resp = { message: "Funcionário atualizado com sucesso." };
+  return resp;
+};
+
+const deleteFunc = async (id_func) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("id", sql.VarChar(), id_func)
+    .query("DELETE FROM tbl_funcionarios WHERE num_funcionario = @id");
+  const resp = { message: "Funcionário eliminado" };
+  return resp;
+};
+
 module.exports = {
   login,
   register,
@@ -134,4 +162,6 @@ module.exports = {
   getAllClients,
   getAllFunc,
   deleteClient,
+  updateFunc,
+  deleteFunc,
 };

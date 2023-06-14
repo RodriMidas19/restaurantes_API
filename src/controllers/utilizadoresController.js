@@ -54,6 +54,25 @@ const getUser = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const updateFunc = async (request, response) => {
+  let data = {
+    num: request.body.num,
+    nome: request.body.nome,
+    idade: request.body.idade,
+    telefone: request.body.telefone,
+    email: request.body.email,
+    cargo: request.body.cargo,
+  };
+  let resp = await utilizadoresModel.updateFunc(data);
+  return response.status(200).json(resp);
+};
+
+const deleteFunc = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.deleteFunc(id);
+  return response.status(200).json(resp);
+};
+
 module.exports = {
   login,
   register,
@@ -62,4 +81,6 @@ module.exports = {
   getAllClients,
   getAllFuncionarios,
   deleteClient,
+  updateFunc,
+  deleteFunc,
 };

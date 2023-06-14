@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/restaurantes
+GET http://localhost:3333/cargos
 
 ###
 POST http://localhost:3333/login
