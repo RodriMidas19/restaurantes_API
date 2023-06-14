@@ -98,8 +98,13 @@ const deleteReserva = async (id) => {
   return resp;
 };
 
+const getAllProducts = async () => {
+  const pool = await poolPromise;
+  const result = await pool.request().query("SELECT * FROM tbl_produtos");
+  return result;
+};
+
 const addProduct = async (data) => {
-  console.log(data.img);
   const pool = await poolPromise;
   const result = await pool
     .request()
@@ -124,4 +129,5 @@ module.exports = {
   deleteReserva,
   getCargos,
   addProduct,
+  getAllProducts
 };

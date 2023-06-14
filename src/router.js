@@ -31,5 +31,6 @@ router.post("/mesas", restaurantesController.getMesas);
 router.get("/restaurantes", restaurantesController.getRestaurantes);
 
 //Produtos
+router.get("/produtos", restaurantesController.getAllProducts);
 router.post("/addProduct", restaurantesController.addProduct);
 module.exports = router;

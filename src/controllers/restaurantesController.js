@@ -61,6 +61,11 @@ const deleteReserva = async (request, response) => {
   return response.status(202).json(resp);
 };
 
+const getAllProducts = async (request, response) => {
+  let resp = await restauranteModel.getAllProducts();
+  return response.status(200).json(resp);
+};
+
 const addProduct = async (request, response) => {
   let data = {
     nome: request.body.nome,
@@ -82,4 +87,5 @@ module.exports = {
   deleteReserva,
   getCargos,
   addProduct,
+  getAllProducts
 };
