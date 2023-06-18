@@ -110,10 +110,9 @@ const addProduct = async (data) => {
     .request()
     .input("nome_produto", sql.VarChar(100), data.nome)
     .input("preco", sql.Int, data.preco)
-    .input("disponivel", sql.Bit, data.disponivel)
     .input("img", sql.VarChar(sql.MAX), data.img)
     .query(
-      "INSERT INTO tbl_produtos(nome_produto,preco,disponivel,prod_imagem) VALUES(@nome_produto,@preco,@disponivel,@img)"
+      "INSERT INTO tbl_produtos(nome_produto,preco,prod_imagem) VALUES(@nome_produto,@preco,@img)"
     );
 
   const resp = { message: "Produto adicionado com sucesso" };
@@ -129,5 +128,5 @@ module.exports = {
   deleteReserva,
   getCargos,
   addProduct,
-  getAllProducts
+  getAllProducts,
 };
