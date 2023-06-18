@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/produtos
+GET http://localhost:3333/admin/ADM
 
 ###
 POST http://localhost:3333/login

@@ -8,6 +8,8 @@ const router = express.Router();
 
 //Utilizadores and Funcionarios
 
+router.get("/admin/:id", utilizadoresController.getAdmin);
+
 //GET
 router.get("/clientes", utilizadoresController.getAllClients);
 router.get("/user/:id", utilizadoresController.getUser);

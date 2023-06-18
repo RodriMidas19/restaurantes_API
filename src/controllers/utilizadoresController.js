@@ -73,6 +73,12 @@ const deleteFunc = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const getAdmin = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.getAdmin(id);
+  return response.status(200).json(resp);
+};
+
 module.exports = {
   login,
   register,
@@ -83,4 +89,5 @@ module.exports = {
   deleteClient,
   updateFunc,
   deleteFunc,
+  getAdmin,
 };

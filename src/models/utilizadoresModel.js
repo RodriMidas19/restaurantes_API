@@ -154,6 +154,15 @@ const deleteFunc = async (id_func) => {
   return resp;
 };
 
+const getAdmin = async (id) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("id", sql.VarChar(10), id)
+    .query("SELECT * FROM tbl_funcionarios WHERE num_funcionario = @id");
+  return result;
+};
+
 module.exports = {
   login,
   register,
@@ -164,4 +173,5 @@ module.exports = {
   deleteClient,
   updateFunc,
   deleteFunc,
+  getAdmin,
 };
