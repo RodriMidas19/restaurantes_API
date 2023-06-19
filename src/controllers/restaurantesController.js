@@ -86,7 +86,8 @@ const addEncomenda = async (request, response) => {
     num_restaurante: request.body.num_restaurante,
     morada: request.body.moradaA,
   };
-  let resp = response.status(200).json(resp);
+  let resp = await restauranteModel.addEncomenda(produtos, data);
+  return response.status(200).json(resp);
 };
 
 module.exports = {

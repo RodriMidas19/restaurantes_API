@@ -24,13 +24,16 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/mesas
+POST http://localhost:3333/addEncomenda
 Content-Type: application/json
 
 {
-  "hora":"19:00h",
-  "data":"2023061",
-  "restaurante":1
+  "produtos":[{"id":1,"quant":2}],
+  "funcionario":"ADM",
+  "preco":30,
+  "cliente":3,
+  "num_restaurante":1,
+  "moradaA":""
 }
 
 ###

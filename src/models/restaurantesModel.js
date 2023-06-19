@@ -124,7 +124,7 @@ const addEncomenda = async (data, dataC) => {
   const result = await pool
     .request()
     .input("funcionario", sql.VarChar(10), dataC.funcionario)
-    .input("preco_total", sql.Int, dataC.precoTotal)
+    .input("preco_total", sql.Int, dataC.preco)
     .input("cliente", sql.Int, dataC.cliente)
     .input("num_restaurante", sql.Int, dataC.num_restaurante)
     .input("moradaA", sql.VarChar(255), dataC.moradaA)
