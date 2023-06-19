@@ -77,6 +77,18 @@ const addProduct = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const addEncomenda = async (request, response) => {
+  let produtos = request.body.produtos;
+  let data = {
+    funcionario: request.body.funcionario,
+    preco: request.body.preco,
+    cliente: request.body.cliente,
+    num_restaurante: request.body.num_restaurante,
+    morada: request.body.moradaA,
+  };
+  let resp = response.status(200).json(resp);
+};
+
 module.exports = {
   getRestaurantes,
   clienteReserva,
@@ -87,5 +99,6 @@ module.exports = {
   deleteReserva,
   getCargos,
   addProduct,
-  getAllProducts
+  getAllProducts,
+  addEncomenda,
 };

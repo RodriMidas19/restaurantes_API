@@ -132,14 +132,26 @@ const addEncomenda = async (data, dataC) => {
       "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA)"
     );
 
-  await pool
-      .request()
-      .query("SELECT num_encomenda From tbl_encomendas ORDER BY DESC")
+  const encomenda = await pool
+    .request()
+    .query(
+      "SELECT TOP 1 num_encomenda From tbl_encomendas ORDER BY  num_encomenda DESC"
+    );
+  const id = encomenda.recordset[0].num_encomenda;
   for (let i = 0; i < data.length; i++) {
     const result = await pool
       .request()
-      .input("");
+      .input("num_encomenda", sql.Int, id)
+      .input("num_produto", sql.Int, data[i].id)
+      .input("quant", sql.Int, data[i].quant)
+      .query(
+        "INSERT INTO tbl_prodEnc(num_encomenda,num_produto,quantidade_produto) VALUES (@num_encomenda, @num_produto, @quant)"
+      );
   }
+
+  const resp = { message: "Encomenda solicitada com Sucesso" };
+
+  return resp;
 };
 module.exports = {
   getRestaurantes,
@@ -152,4 +164,5 @@ module.exports = {
   getCargos,
   addProduct,
   getAllProducts,
+  addEncomenda,
 };
