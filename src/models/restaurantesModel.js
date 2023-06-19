@@ -118,6 +118,29 @@ const addProduct = async (data) => {
   const resp = { message: "Produto adicionado com sucesso" };
   return resp;
 };
+
+const addEncomenda = async (data, dataC) => {
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("funcionario", sql.VarChar(10), dataC.funcionario)
+    .input("preco_total", sql.Int, dataC.precoTotal)
+    .input("cliente", sql.Int, dataC.cliente)
+    .input("num_restaurante", sql.Int, dataC.num_restaurante)
+    .input("moradaA", sql.VarChar(255), dataC.moradaA)
+    .query(
+      "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA)"
+    );
+
+  await pool
+      .request()
+      .query("SELECT num_encomenda From tbl_encomendas ORDER BY DESC")
+  for (let i = 0; i < data.length; i++) {
+    const result = await pool
+      .request()
+      .input("");
+  }
+};
 module.exports = {
   getRestaurantes,
   reservaCliente,
