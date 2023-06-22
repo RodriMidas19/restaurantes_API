@@ -97,7 +97,7 @@ const getUser = async (user) => {
     .input("id_cliente", sql.Int, user)
     .query("SELECT * FROM tbl_clientes WHERE id_cliente = @id_cliente");
 
-  const data = result.recordset[0];
+  const data = result.recordset;
   return data;
 };
 const deleteClient = async (id) => {
@@ -163,6 +163,41 @@ const getAdmin = async (id) => {
   return result;
 };
 
+const getReservaUser = async (id) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("id", sql.Int, id)
+    .query(
+      "Select tbl_restaurantes.nome,data_reserva,hora_reserva,situacao from tbl_reservas inner join tbl_restaurantes on tbl_restaurantes.num_restaurante = tbl_reservas.num_restaurante where id_cliente = @id order by data_reserva desc"
+    );
+  const data = result.recordset;
+  return data;
+};
+
+const getEncomendasUser = async (id) => {
+  const pool = await connection;
+  const enc = await pool
+    .request()
+    .input("id", sql.Int, id)
+    .query(
+      "select num_encomenda,tbl_restaurantes.nome,preco_total,situacao from tbl_encomendas inner join tbl_restaurantes on tbl_restaurantes.num_restaurante = tbl_encomendas.num_restaurante where cliente = @id"
+    );
+
+  return enc.recordset;
+};
+
+const UserProd = async (id) => {
+  const pool = await connection;
+  const data = await pool
+    .request()
+    .input("enc", sql.Int, id)
+    .query(
+      "select tbl_produtos.nome_produto,quantidade_produto from tbl_prodEnc inner join tbl_produtos on tbl_produtos.id_produto = tbl_prodEnc.num_produto where num_encomenda = @enc"
+    );
+
+  return data.recordset;
+};
 module.exports = {
   login,
   register,
@@ -174,4 +209,7 @@ module.exports = {
   updateFunc,
   deleteFunc,
   getAdmin,
+  getReservaUser,
+  getEncomendasUser,
+  UserProd,
 };

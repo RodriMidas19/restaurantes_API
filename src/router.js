@@ -14,9 +14,12 @@ router.get("/admin/:id", utilizadoresController.getAdmin);
 router.get("/clientes", utilizadoresController.getAllClients);
 router.get("/user/:id", utilizadoresController.getUser);
 router.get("/funcionarios", utilizadoresController.getAllFuncionarios);
+router.get("/userR/:id", utilizadoresController.getReservaUser);
+router.get("/userE/:id", utilizadoresController.UserEnc);
+router.get("/userP/:id", utilizadoresController.UserProd);
+
 router.delete("/deleteClient/:id", utilizadoresController.deleteClient);
 router.post("/register", utilizadoresController.register);
-
 router.post("/login", utilizadoresController.login);
 router.post("/registerFunc", utilizadoresController.registerFunc);
 router.put("/updateFunc", utilizadoresController.updateFunc);

@@ -79,6 +79,23 @@ const getAdmin = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const getReservaUser = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.getReservaUser(id);
+  return response.status(200).json(resp);
+};
+const UserEnc = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.getEncomendasUser(id);
+  return response.status(200).json(resp);
+};
+
+const UserProd = async (request, response) => {
+  let id = request.params.id;
+  let resp = await utilizadoresModel.UserProd(id);
+  return response.status(200).json(resp);
+};
+
 module.exports = {
   login,
   register,
@@ -90,4 +107,7 @@ module.exports = {
   updateFunc,
   deleteFunc,
   getAdmin,
+  getReservaUser,
+  UserEnc,
+  UserProd
 };
