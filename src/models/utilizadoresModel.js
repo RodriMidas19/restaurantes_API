@@ -59,7 +59,7 @@ const register = async (user) => {
   const result = await pool
     .request()
     .input("nome", sql.VarChar(50), user.nome)
-    .input("data_nasc", sql.Date, user.data_nasc)
+    .input("data_nasc", sql.VarChar(50), user.data_nasc)
     .input("telefone", sql.VarChar(9), user.telefone)
     .input("morada", sql.VarChar(250), user.morada)
     .input("email", sql.VarChar(100), user.email)
@@ -68,7 +68,8 @@ const register = async (user) => {
       "INSERT INTO tbl_clientes (nome,data_nasc,telefone,morada,email,password) VALUES (@nome,@data_nasc,@telefone,@morada,@email,@password)"
     );
 
-  return "Resgistado com Sucesso!";
+    const resp = {message:'Registado com sucesso'};
+  return resp;
 };
 
 const registerFunc = async (user) => {

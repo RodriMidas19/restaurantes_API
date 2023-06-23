@@ -128,8 +128,9 @@ const addEncomenda = async (data, dataC) => {
     .input("cliente", sql.Int, dataC.cliente)
     .input("num_restaurante", sql.Int, dataC.num_restaurante)
     .input("moradaA", sql.VarChar(255), dataC.moradaA)
+    .input("situacao", sql.Int, dataC.situacao)
     .query(
-      "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA)"
+      "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa,situacao) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA,@situacao)"
     );
 
   const encomenda = await pool
