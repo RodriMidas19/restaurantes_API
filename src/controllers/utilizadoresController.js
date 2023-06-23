@@ -96,6 +96,16 @@ const UserProd = async (request, response) => {
   return response.status(200).json(resp);
 };
 
+const updateClient = async (request, response) => {
+  let data = request.body;
+  let resp = await utilizadoresModel.updateClient(data);
+  return response.status(200).json(resp);
+};
+
+const getEncomendas = async (request, response) => {
+  let resp = await utilizadoresModel.getAllEncomendas();
+  return response.status(200).json(resp);
+}
 module.exports = {
   login,
   register,
@@ -109,5 +119,7 @@ module.exports = {
   getAdmin,
   getReservaUser,
   UserEnc,
-  UserProd
+  UserProd,
+  updateClient,
+  getEncomendas
 };

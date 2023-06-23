@@ -153,6 +153,19 @@ const addEncomenda = async (data, dataC) => {
 
   return resp;
 };
+
+const updateStatusEncomenda = async (id, situacao) => {
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("id_encomenda", sql.Int, id)
+    .input("situacao", sql.Int, situacao)
+    .query(
+      "UPDATE tbl_encomendas SET situacao = @situacao WHERE num_encomenda = @id_encomenda"
+    );
+  const resp = { message: "Encomenda Atualizada com Sucesso" };
+  return resp;
+};
 module.exports = {
   getRestaurantes,
   reservaCliente,
@@ -165,4 +178,5 @@ module.exports = {
   addProduct,
   getAllProducts,
   addEncomenda,
+  updateStatusEncomenda,
 };

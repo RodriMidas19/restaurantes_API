@@ -9,6 +9,8 @@ const router = express.Router();
 //Utilizadores and Funcionarios
 
 router.get("/admin/:id", utilizadoresController.getAdmin);
+router.get("/encomendas",utilizadoresController.getEncomendas);
+router.put("/Upencomenda",restaurantesController.updateStatusEnc);
 
 //GET
 router.get("/clientes", utilizadoresController.getAllClients);
@@ -18,6 +20,7 @@ router.get("/userR/:id", utilizadoresController.getReservaUser);
 router.get("/userE/:id", utilizadoresController.UserEnc);
 router.get("/userP/:id", utilizadoresController.UserProd);
 
+router.put("/upCliente", utilizadoresController.updateClient);
 router.delete("/deleteClient/:id", utilizadoresController.deleteClient);
 router.post("/register", utilizadoresController.register);
 router.post("/login", utilizadoresController.login);

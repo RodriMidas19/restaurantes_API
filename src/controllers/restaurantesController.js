@@ -89,6 +89,12 @@ const addEncomenda = async (request, response) => {
   let resp = await restauranteModel.addEncomenda(produtos, data);
   return response.status(200).json(resp);
 };
+const updateStatusEnc = async (request, response) => {
+  let id  = request.body.id;
+  let situacao = request.body.situacao;
+  let resp = await restauranteModel.updateStatusEncomenda(id,situacao);
+  return response.status(200).json(resp);
+};
 
 module.exports = {
   getRestaurantes,
@@ -102,4 +108,5 @@ module.exports = {
   addProduct,
   getAllProducts,
   addEncomenda,
+  updateStatusEnc
 };

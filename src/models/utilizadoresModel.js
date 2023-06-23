@@ -198,6 +198,32 @@ const UserProd = async (id) => {
 
   return data.recordset;
 };
+
+const updateClient = async (data) => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .input("id", sql.Int, data.id)
+    .input("nome", sql.VarChar(50), data.nome)
+    .input("telefone", sql.VarChar(9), data.telefone)
+    .input("email", sql.VarChar(100), data.email)
+    .input("morada", sql.VarChar(250), data.morada)
+    .query(
+      "UPDATE tbl_clientes SET nome =@nome, telefone =@telefone, morada =@morada, email =@email WHERE id_cliente =@id"
+    );
+  const resp = { message: "Os seus dados foram atualizados" };
+  return resp;
+};
+
+const getAllEncomendas = async () => {
+  const pool = await connection;
+  const result = await pool
+    .request()
+    .query(
+      "select num_encomenda,preco_total,tbl_clientes.nome as nomeC,tbl_restaurantes.nome,tbl_clientes.morada,morada_alternativa,situacao from tbl_encomendas inner join tbl_clientes on tbl_clientes.id_cliente = tbl_encomendas.cliente inner join tbl_restaurantes on tbl_restaurantes.num_restaurante = tbl_encomendas.num_restaurante"
+    );
+  return result.recordset;
+};
 module.exports = {
   login,
   register,
@@ -212,4 +238,6 @@ module.exports = {
   getReservaUser,
   getEncomendasUser,
   UserProd,
+  updateClient,
+  getAllEncomendas,
 };
