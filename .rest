@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/encomendas
+GET http://localhost:3333/prodCat/3
 
 ###
 POST http://localhost:3333/login

@@ -130,7 +130,7 @@ const addEncomenda = async (data, dataC) => {
     .input("moradaA", sql.VarChar(255), dataC.moradaA)
     .input("situacao", sql.Int, dataC.situacao)
     .query(
-      "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa,situacao) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA,@situacao)"
+      "Insert into tbl_encomendas(funcionario,preco_total,cliente,num_restaurante,morada_alternativa,situacao) values(@funcionario,@preco_total,@cliente,@num_restaurante,@moradaA,1)"
     );
 
   const encomenda = await pool
@@ -167,6 +167,22 @@ const updateStatusEncomenda = async (id, situacao) => {
   const resp = { message: "Encomenda Atualizada com Sucesso" };
   return resp;
 };
+
+const getCategorias = async () => {
+  const pool = await poolPromise;
+  const result = await pool.request().query("select * from tbl_categorias");
+  //const data = result.recordset;
+  return result;
+};
+
+const getProdCat = async (cat) => {
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("cat", sql.Int, cat)
+    .query("select * from tbl_produtos where categoria=@cat");
+  return result;
+};
 module.exports = {
   getRestaurantes,
   reservaCliente,
@@ -180,4 +196,6 @@ module.exports = {
   getAllProducts,
   addEncomenda,
   updateStatusEncomenda,
+  getCategorias,
+  getProdCat,
 };

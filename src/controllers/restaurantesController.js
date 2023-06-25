@@ -90,11 +90,23 @@ const addEncomenda = async (request, response) => {
   return response.status(200).json(resp);
 };
 const updateStatusEnc = async (request, response) => {
-  let id  = request.body.id;
+  let id = request.body.id;
   let situacao = request.body.situacao;
-  let resp = await restauranteModel.updateStatusEncomenda(id,situacao);
+  let resp = await restauranteModel.updateStatusEncomenda(id, situacao);
   return response.status(200).json(resp);
 };
+
+const getCategorias = async (request, response) => {
+  let resp = await restauranteModel.getCategorias();
+  return response.status(200).json(resp);
+};
+
+const getProdCat = async (request, response) => {
+  let cat = request.params.id;
+  console.log(cat);
+  let resp = await restauranteModel.getProdCat(cat);
+  return response.status(200).json(resp);
+}
 
 module.exports = {
   getRestaurantes,
@@ -108,5 +120,7 @@ module.exports = {
   addProduct,
   getAllProducts,
   addEncomenda,
-  updateStatusEnc
+  updateStatusEnc,
+  getCategorias,
+  getProdCat
 };
