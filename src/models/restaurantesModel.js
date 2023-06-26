@@ -111,8 +111,9 @@ const addProduct = async (data) => {
     .input("nome_produto", sql.VarChar(100), data.nome)
     .input("preco", sql.Int, data.preco)
     .input("img", sql.VarChar(sql.MAX), data.img)
+    .input("categoria", sql.Int, data.categoria)
     .query(
-      "INSERT INTO tbl_produtos(nome_produto,preco,prod_imagem) VALUES(@nome_produto,@preco,@img)"
+      "INSERT INTO tbl_produtos(nome_produto,preco,prod_imagem,categoria) VALUES(@nome_produto,@preco,@img,@categoria)"
     );
 
   const resp = { message: "Produto adicionado com sucesso" };
