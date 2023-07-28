@@ -68,7 +68,7 @@ const register = async (user) => {
       "INSERT INTO tbl_clientes (nome,data_nasc,telefone,morada,email,password) VALUES (@nome,@data_nasc,@telefone,@morada,@email,@password)"
     );
 
-    const resp = {message:'Registado com sucesso'};
+  const resp = { message: "Registado com sucesso" };
   return resp;
 };
 
@@ -106,7 +106,7 @@ const deleteClient = async (id) => {
   await pool
     .request()
     .input("id", sql.Int, id)
-    .query("DELETE FROM tbl_clientes WHERE id_cliente = @id");
+    .query("DELETE tbl_clientes WHERE id_cliente = @id");
   const resp = { message: `Cliente ${id} eliminado com sucesso` };
   return resp;
 };
